@@ -1,0 +1,8 @@
+
+root_path: data
+path_generate: data
+type: both
+# type: resize
+# type: crop
+ori_size: 2048
+image_size: 512

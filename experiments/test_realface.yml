@@ -1,0 +1,53 @@
+## test synface
+## trainer
+run_test: true
+batch_size: 64
+iter_num: 10
+# test_data_dir: data/resize/test
+# checkpoint_dir: results/resize-nodeF_nosourceT
+# test_result_dir: results/resize-nodeF_nosourceT/test_results_checkpoint
+test_data_dir: data/both/test
+checkpoint_dir: results/both-nodeF_nosourceT
+test_result_dir: results/both-nodeF_nosourceT/test_results_checkpoint
+
+no_deSpecular: False
+no_source_illumination: true
+
+
+## dataloader
+num_workers: 4
+image_size: 128
+resize: 256
+crop: 512
+# crop_height: 256
+# crop_width: 256
+
+
+paired_data_dir_names: ['image_mix', 'image_diffuse', 'image_mask', 'coord3', 'map_mask','map_normal_diffuse28', 'map_albedo_diffuse28', 'lightinfo']
+# paired_data_dir_names: ['image_mix', 'image_diffuse', 'image_mask', 'coord3', 'map_mask', 'map_normal_mix28', 'map_albedo_mix28', 'lightinfo']
+
+## model
+ngf: 64
+ndf: 64
+archG: unet_128
+archD: basic
+norm: batch
+no_dropout: True
+init_type: normal
+init_gain: 0.02
+gpu_ids: [0]
+no_lsgan: True
+n_layers_D: 3
+beta1: 0.5
+
+model_name: FaceSep_ALL
+
+
+lam_perc: 0.5
+lam_recon: 1
+lam_deSpecular: 1
+lam_intrinsics: 1
+lam_error: 3
+gamma: 1
+
+
