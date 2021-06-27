@@ -19,8 +19,8 @@ if __name__ == '__main__':
     # Begining runninga
     ## runtime arguments
     parser = argparse.ArgumentParser(description='Training configurations.')
-    parser.add_argument('--config', default='experiments/train_realface.yml', type=str, help='Specify a config file path')
-    # parser.add_argument('--config', default='experiments/test_realface.yml', type=str, help='Specify a config file path')
+    parser.add_argument('--config', default='experiments/train_realface.yml', type=str, help='Specify a config file path') # train step
+    # parser.add_argument('--config', default='experiments/test_realface.yml', type=str, help='Specify a config file path') # test step
     parser.add_argument('--gpu', default=0, type=int, help='Specify a GPU device')
     parser.add_argument('--num_workers', default=4, type=int,
                         help='Specify the number of worker threads for data loaders')
