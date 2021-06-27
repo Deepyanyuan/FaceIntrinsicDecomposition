@@ -7,8 +7,8 @@ iter_num: 10
 # checkpoint_dir: results/resize-nodeF_nosourceT
 # test_result_dir: results/resize-nodeF_nosourceT/test_results_checkpoint
 test_data_dir: data/both/test
-checkpoint_dir: results/both-nodeF_nosourceT
-test_result_dir: results/both-nodeF_nosourceT/test_results_checkpoint
+checkpoint_dir: results/both-nodeF_nosourceF
+test_result_dir: results/both-nodeF_nosourceF/test_results_checkpoint
 
 no_deSpecular: False
 no_source_illumination: true
@@ -19,8 +19,8 @@ num_workers: 4
 image_size: 128
 resize: 256
 crop: 512
-# crop_height: 256
-# crop_width: 256
+# crop_height: 512
+# crop_width: 512
 
 
 paired_data_dir_names: ['image_mix', 'image_diffuse', 'image_mask', 'coord3', 'map_mask','map_normal_diffuse28', 'map_albedo_diffuse28', 'lightinfo']
