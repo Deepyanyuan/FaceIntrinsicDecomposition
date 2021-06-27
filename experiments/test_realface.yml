@@ -4,14 +4,14 @@ run_test: true
 batch_size: 64
 iter_num: 10
 # test_data_dir: data/resize/test
-# checkpoint_dir: results/resize-nodeF_nosourceT
-# test_result_dir: results/resize-nodeF_nosourceT/test_results_checkpoint
+# checkpoint_dir: results/resize-nodeF_nosourceF
+# test_result_dir: results/resize-nodeF_nosourceF/test_results_checkpoint
 test_data_dir: data/both/test
 checkpoint_dir: results/both-nodeF_nosourceF
 test_result_dir: results/both-nodeF_nosourceF/test_results_checkpoint
 
 no_deSpecular: False
-no_source_illumination: true
+no_source_illumination: False
 
 
 ## dataloader

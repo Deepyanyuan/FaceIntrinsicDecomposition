@@ -5,7 +5,7 @@ num_epochs: 20
 batch_size: 8
 iter_num: 5000
 # train_val_data_dir: data/resize
-# checkpoint_dir: results/resize-nodeT_nosourceF
+# checkpoint_dir: results/resize-nodeF_nosourceF
 train_val_data_dir: data/both
 checkpoint_dir: results/both-nodeF_nosourceF
 
