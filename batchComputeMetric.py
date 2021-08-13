@@ -13,8 +13,11 @@ class batchProcession():
         self.gamma = 1
         self.srcPath = 'D:/04_paper/results for different states/'
         
-        self.fakeList = ['fake_image_mix','fake_image_diffuse','fake_image_residue','fake_image_lambertian','fake_image_mask','fake_map_normal','fake_map_albedo','fake_shading']
-        self.realList = ['real_image_mix','real_image_diffuse','real_image_residue','real_image_lambertian','real_image_mask','real_map_normal','real_map_albedo','real_shading']
+        # self.fakeList = ['fake_image_mix','fake_image_diffuse','fake_image_residue','fake_image_lambertian','fake_image_mask','fake_map_normal','fake_map_albedo','fake_shading']
+        # self.realList = ['real_image_mix','real_image_diffuse','real_image_residue','real_image_lambertian','real_image_mask','real_map_normal','real_map_albedo','real_shading']
+
+        self.fakeList = ['fake_image_mix','fake_image_diffuse','fake_image_residue','fake_image_mask','fake_map_normal','fake_map_albedo']
+        self.realList = ['real_image_mix','real_image_diffuse','real_image_residue','real_image_mask','real_map_normal','real_map_albedo']
         
     
     def computeSingleMetrics(self, img, img_gt):
@@ -40,8 +43,8 @@ class batchProcession():
             filesList_gt = os.listdir(mapPath_gt)
             
             list_l1 = []
-            list_sl1 = []
             list_l2 = []
+            list_cos3 = []
             list_psnr = []
             list_ssim = []
             list_msssim = []
@@ -66,16 +69,38 @@ class batchProcession():
                     print('image format is wrong!!!')
                 # print('img.shape',img.shape)
                 
-                l1, sl1, l2, psnr, ssim, msssim, lpips = self.metrics.metrics_all(img, img_gt, self.device)
+                l1, l2, cos3, psnr, ssim, msssim, lpips = self.metrics.metrics_all(img, img_gt, self.device)
                 list_l1.append(l1)
-                list_sl1.append(sl1)
                 list_l2.append(l2)
+                list_cos3.append(cos3)
                 list_psnr.append(psnr)
                 list_ssim.append(ssim)
                 list_msssim.append(msssim)
                 list_lpips.append(lpips)
-            mapList.append((list_l1,list_sl1,list_l2,list_psnr,list_ssim,list_msssim,list_lpips))
+            mapList.append((list_l1,list_l2,list_cos3,list_psnr,list_ssim,list_msssim,list_lpips))
+            
+            #     l1, l2, cos3, psnr, ssim, msssim = self.metrics.metrics_lpips(img, img_gt, self.device)
+            #     list_l1.append(l1)
+            #     list_l2.append(l2)
+            #     list_cos3.append(cos3)
+            #     list_psnr.append(psnr)
+            #     list_ssim.append(ssim)
+            #     list_msssim.append(msssim)
+            # mapList.append((list_l1,list_l2,list_cos3,list_psnr,list_ssim,list_msssim))
         
+            #     ssim, msssim = self.metrics.metrics_ssim(img, img_gt, self.device)
+            #     list_ssim.append(ssim)
+            #     list_msssim.append(msssim)
+            # mapList.append((list_ssim,list_msssim))
+            
+            #     psnr = self.metrics.metrics_psnr(img, img_gt, self.device)
+            #     list_psnr.append(psnr)
+            # mapList.append((list_psnr))
+            
+            #     lpips = self.metrics.metrics_lpips2(img, img_gt, self.device)
+            #     list_lpips.append(lpips)
+            # mapList.append((list_lpips))
+            
         return mapList
         
     
@@ -85,6 +110,7 @@ class batchProcession():
         files_src_1 = os.listdir(self.srcPath)
         # for k1 in range(len(files_src_1)):
         for k1 in range(1):
+            
             file_1 = files_src_1[k1]
             path_src_1 = os.path.join(self.srcPath, file_1, 'results')
             

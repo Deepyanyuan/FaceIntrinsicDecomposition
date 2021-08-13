@@ -1,22 +1,24 @@
 ## test synface
 ## trainer
 run_test: true
-batch_size: 64
+batch_size: 56
 iter_num: 10
-# test_data_dir: data/resize/test
-# checkpoint_dir: results/resize-nodeF_nosourceF
-# test_result_dir: results/resize-nodeF_nosourceF/test_results_checkpoint
-test_data_dir: data/both/test
-checkpoint_dir: results/both-nodeF_nosourceF
-test_result_dir: results/both-nodeF_nosourceF/test_results_checkpoint
+test_data_dir: D:/04_paper/data/resize/test
+checkpoint_dir: D:/04_paper/results/resize-nodeT_nosourceT
+test_result_dir: D:/04_paper/results/resize-nodeT_nosourceT/test_results_checkpoint
+# test_data_dir: D:/04_paper/data/both/test
+# checkpoint_dir: D:/04_paper/results/both-nodeF_nosourceT
+# test_result_dir: D:/04_paper/results/both-nodeF_nosourceT/test_results_checkpoint
 
-no_deSpecular: False
-no_source_illumination: False
+no_deSpecular: true
+no_source_illumination: true
 
+# false, true
 
 ## dataloader
 num_workers: 4
-image_size: 128
+# image_size: 128
+image_size: 256
 resize: 256
 crop: 512
 # crop_height: 512

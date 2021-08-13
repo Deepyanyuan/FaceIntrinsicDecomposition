@@ -2,25 +2,26 @@
 ## trainer
 run_train: True
 num_epochs: 20
-batch_size: 8
+batch_size: 3
 iter_num: 5000
-# train_val_data_dir: data/resize
-# checkpoint_dir: results/resize-nodeF_nosourceF
-train_val_data_dir: data/both
-checkpoint_dir: results/both-nodeF_nosourceF
+train_val_data_dir: D:/04_paper/data/resize
+checkpoint_dir: D:/04_paper/results/resize-nodeF_nosourceT
+# train_val_data_dir: D:/04_paper/data/both
+# checkpoint_dir: D:/04_paper/results/both-nodeF_nosourceF
 
 no_deSpecular: false
-no_source_illumination: false
+no_source_illumination: true
 
 save_checkpoint_freq: 1
-keep_num_checkpoint: 21
+keep_num_checkpoint: 6
 resume: True
 use_logger: True
 log_freq: 5000
 
 ## dataloader
 num_workers: 4
-image_size: 128
+# image_size: 128
+image_size: 256
 crop: 512
 # crop_height: 512
 # crop_width: 512

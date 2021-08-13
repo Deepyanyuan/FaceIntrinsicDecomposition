@@ -77,10 +77,10 @@ class FaceSep():
                 self.net_G2 = networks.define_G(8, 3,  # opt.input_nc, opt.output_nc, 
                                             self.ngf, self.archG, self.norm,
                                             not self.no_dropout, self.init_type, self.init_gain, self.gpu_ids)
-                self.net_G3 = networks.define_G(14, 3,  # opt.input_nc, opt.output_nc, 
+                self.net_G3 = networks.define_G(11, 3,  # opt.input_nc, opt.output_nc, 
                                             self.ngf, self.archG, self.norm,
                                             not self.no_dropout, self.init_type, self.init_gain, self.gpu_ids)
-                self.net_G4 = networks.define_G(11, 1,  # opt.input_nc, opt.output_nc, 
+                self.net_G4 = networks.define_G(8, 1,  # opt.input_nc, opt.output_nc, 
                                             self.ngf, self.archG, self.norm,
                                             not self.no_dropout, self.init_type, self.init_gain, self.gpu_ids)
             else:
@@ -93,10 +93,10 @@ class FaceSep():
                 self.net_G2 = networks.define_G(5, 3,  # opt.input_nc, opt.output_nc, 
                                             self.ngf, self.archG, self.norm,
                                             not self.no_dropout, self.init_type, self.init_gain, self.gpu_ids)
-                self.net_G3 = networks.define_G(11, 3,  # opt.input_nc, opt.output_nc, 
+                self.net_G3 = networks.define_G(8, 3,  # opt.input_nc, opt.output_nc, 
                                             self.ngf, self.archG, self.norm,
                                             not self.no_dropout, self.init_type, self.init_gain, self.gpu_ids)
-                self.net_G4 = networks.define_G(8, 1,  # opt.input_nc, opt.output_nc, 
+                self.net_G4 = networks.define_G(5, 1,  # opt.input_nc, opt.output_nc, 
                                             self.ngf, self.archG, self.norm,
                                             not self.no_dropout, self.init_type, self.init_gain, self.gpu_ids)
         
@@ -112,10 +112,10 @@ class FaceSep():
                 self.net_G2 = networks.define_G(11, 3,  # opt.input_nc, opt.output_nc, 
                                             self.ngf, self.archG, self.norm,
                                             not self.no_dropout, self.init_type, self.init_gain, self.gpu_ids)
-                self.net_G3 = networks.define_G(24, 3,  # opt.input_nc, opt.output_nc, 
+                self.net_G3 = networks.define_G(21, 3,  # opt.input_nc, opt.output_nc, 
                                             self.ngf, self.archG, self.norm,
                                             not self.no_dropout, self.init_type, self.init_gain, self.gpu_ids)
-                self.net_G4 = networks.define_G(15, 1,  # opt.input_nc, opt.output_nc, 
+                self.net_G4 = networks.define_G(12, 1,  # opt.input_nc, opt.output_nc, 
                                             self.ngf, self.archG, self.norm,
                                             not self.no_dropout, self.init_type, self.init_gain, self.gpu_ids)
             else:
@@ -128,10 +128,10 @@ class FaceSep():
                 self.net_G2 = networks.define_G(8, 3,  # opt.input_nc, opt.output_nc, 
                                             self.ngf, self.archG, self.norm,
                                             not self.no_dropout, self.init_type, self.init_gain, self.gpu_ids)
-                self.net_G3 = networks.define_G(21, 3,  # opt.input_nc, opt.output_nc, 
+                self.net_G3 = networks.define_G(18, 3,  # opt.input_nc, opt.output_nc, 
                                             self.ngf, self.archG, self.norm,
                                             not self.no_dropout, self.init_type, self.init_gain, self.gpu_ids)
-                self.net_G4 = networks.define_G(12, 1,  # opt.input_nc, opt.output_nc, 
+                self.net_G4 = networks.define_G(9, 1,  # opt.input_nc, opt.output_nc, 
                                             self.ngf, self.archG, self.norm,
                                             not self.no_dropout, self.init_type, self.init_gain, self.gpu_ids)
             
@@ -141,27 +141,7 @@ class FaceSep():
                                     self.n_layers_D, self.norm, use_sigmoid, self.init_type, self.init_gain, self.gpu_ids)
         self.criterionGAN = networks.GANLoss(gan_mode='vanilla').to(self.device)
             
-
-        # ## networks and optimizers
-        # ## self.netG = networks.netG(6, 3, self.image_size, 3).to(self.device)         # 生成网络，1+4网络
-        # self.netG = networks.netGs(6, 3, self.image_size, 3).to(self.device)      # 简化生成网络，1+3网络
-        # self.netR = networks.netGr(10, 11, self.image_size, 3).to(self.device) # 使用自己构建的神经渲染模型，需要训练
-        # if self.model_name == 'FaceSep_GAN':
-        #     self.netD = networks.netD(6).to(self.device)
-        #     self.criterionGAN = networks.GANLoss(gan_mode='vanilla').to(self.device)
-            
-        # ## encoder-deconder network
-        # # self.netG = networks.EDs(6, 3, self.image_size, 3).to(self.device)      # 简化生成网络，1+3网络
-        # # self.netR = networks.EDr(10, 11, self.image_size, 3).to(self.device) # 使用自己构建的神经渲染模型，需要训练
-        # # if self.model_name == 'FaceSep_GAN':
-        # #     self.netD = networks.netD(6).to(self.device)
-        # #     self.criterionGAN = networks.GANLoss(gan_mode='vanilla').to(self.device)
-            
-        # if self.ourRender or self.model_name == 'FaceSep_ALL_our':
-        #     self.render = render.Render(cfgs)   # 使用自己构建的渲染模型，无需训练
-            
         self.network_names = [k for k in vars(self) if 'net' in k]
-        
         
         self.make_optimizer = lambda model: torch.optim.Adam(
             filter(lambda p: p.requires_grad, model.parameters()),
@@ -312,29 +292,25 @@ class FaceSep():
         ## G1 and G2, normal and albedo
         if self.no_source_illumination:
             if not self.no_deSpecular:
-                input_G1_2 = torch.cat((self.real_image_mix_normalized,
-                                    # self.real_dirLight,
-                                    self.real_image_diffuse_normalized,
-                                    # self.fake_image_diffuse_normalized,
+                input_G1_2 = torch.cat((
+                                    self.real_image_mix_normalized,
+                                    self.fake_image_diffuse_normalized.detach(),
                                     self.coord_normalized), dim=1)
             else:
-                input_G1_2 = torch.cat((self.real_image_mix_normalized,
-                                    # self.real_dirLight,
-                                    # self.real_image_diffuse_normalized,
-                                    # self.fake_image_diffuse_normalized,
+                input_G1_2 = torch.cat((
+                                    self.real_image_mix_normalized,
                                     self.coord_normalized), dim=1)
         else:
             if not self.no_deSpecular:
-                input_G1_2 = torch.cat((self.real_image_mix_normalized,
+                input_G1_2 = torch.cat((
+                                    self.real_image_mix_normalized,
                                     self.real_dirLight,
-                                    self.real_image_diffuse_normalized,
-                                    # self.fake_image_diffuse_normalized,
+                                    self.fake_image_diffuse_normalized.detach(),
                                     self.coord_normalized), dim=1)
             else:
-                input_G1_2 = torch.cat((self.real_image_mix_normalized,
+                input_G1_2 = torch.cat((
+                                    self.real_image_mix_normalized,
                                     self.real_dirLight,
-                                    # self.real_image_diffuse_normalized,
-                                    # self.fake_image_diffuse_normalized,
                                     self.coord_normalized), dim=1)
         
         
@@ -362,37 +338,31 @@ class FaceSep():
         ## G4, mask
         if self.no_source_illumination:
             if not self.no_deSpecular:
-                input_G4 = torch.cat((self.real_map_normal_normalized,
-                                    # self.real_dirLight,
+                input_G4 = torch.cat((
+                                    # self.real_map_normal_normalized,
                                     self.fake_map_normal_normalized,
-                                    # self.fake_shading_normalized,
-                                    self.real_image_diffuse_normalized,
-                                    # self.fake_image_diffuse_normalized,
+                                    self.fake_image_diffuse_normalized.detach(),
                                     self.coord_normalized), dim=1)
             else:
-                input_G4 = torch.cat((self.real_map_normal_normalized,
-                                    # self.real_dirLight,
+                input_G4 = torch.cat((
+                                    # self.real_map_normal_normalized,
                                     self.fake_map_normal_normalized,
-                                    # self.fake_shading_normalized,
-                                    # self.real_image_diffuse_normalized,
-                                    # self.fake_image_diffuse_normalized,
                                     self.coord_normalized), dim=1)
         else:
             if not self.no_deSpecular:
-                input_G4 = torch.cat((self.real_map_normal_normalized,
+                input_G4 = torch.cat((
+                                    # self.real_map_normal_normalized,
                                     self.real_dirLight,
                                     self.fake_map_normal_normalized,
                                     self.fake_shading_normalized,
-                                    self.real_image_diffuse_normalized,
-                                    # self.fake_image_diffuse_normalized,
+                                    self.fake_image_diffuse_normalized.detach(),
                                     self.coord_normalized), dim=1)
             else:
-                input_G4 = torch.cat((self.real_map_normal_normalized,
+                input_G4 = torch.cat((
+                                    # self.real_map_normal_normalized,
                                     self.real_dirLight,
                                     self.fake_map_normal_normalized,
                                     self.fake_shading_normalized,
-                                    # self.real_image_diffuse_normalized,
-                                    # self.fake_image_diffuse_normalized,
                                     self.coord_normalized), dim=1)
             
         self.fake_image_mask_normalized = self.net_G4(input_G4)
@@ -401,49 +371,39 @@ class FaceSep():
         ## G3
         if self.no_source_illumination:
             if not self.no_deSpecular:
-                input_G3 = torch.cat((self.real_map_normal_normalized,
-                                    # self.real_dirLight,
+                input_G3 = torch.cat((
+                                    # self.real_map_normal_normalized,
                                     self.fake_map_normal_normalized,
                                     self.fake_map_albedo_normalized,
-                                    # self.fake_shading_normalized,
-                                    # self.fake_image_lambertian_normalized,
-                                    # self.fake_image_residue_temp_normalized,
-                                    self.real_image_diffuse_normalized,
-                                    # self.fake_image_diffuse_normalized,
+                                    self.fake_image_diffuse_normalized.detach(),
                                     self.coord_normalized), dim=1)
             else:
-                input_G3 = torch.cat((self.real_map_normal_normalized,
-                                    # self.real_dirLight,
+                input_G3 = torch.cat((
+                                    # self.real_map_normal_normalized,
                                     self.fake_map_normal_normalized,
                                     self.fake_map_albedo_normalized,
-                                    # self.fake_shading_normalized,
-                                    # self.fake_image_lambertian_normalized,
-                                    # self.fake_image_residue_temp_normalized,
-                                    # self.real_image_diffuse_normalized,
-                                    # self.fake_image_diffuse_normalized,
                                     self.coord_normalized), dim=1)
         else:
             if not self.no_deSpecular:
-                input_G3 = torch.cat((self.real_map_normal_normalized,
+                input_G3 = torch.cat((
+                                    # self.real_map_normal_normalized,
                                     self.real_dirLight,
                                     self.fake_map_normal_normalized,
                                     self.fake_map_albedo_normalized,
                                     self.fake_shading_normalized,
                                     self.fake_image_lambertian_normalized,
                                     self.fake_image_residue_temp_normalized,
-                                    self.real_image_diffuse_normalized,
-                                    # self.fake_image_diffuse_normalized,
+                                    self.fake_image_diffuse_normalized.detach(),
                                     self.coord_normalized), dim=1)
             else:
-                input_G3 = torch.cat((self.real_map_normal_normalized,
+                input_G3 = torch.cat((
+                                    # self.real_map_normal_normalized,
                                     self.real_dirLight,
                                     self.fake_map_normal_normalized,
                                     self.fake_map_albedo_normalized,
                                     self.fake_shading_normalized,
                                     self.fake_image_lambertian_normalized,
                                     self.fake_image_residue_temp_normalized,
-                                    # self.real_image_diffuse_normalized,
-                                    # self.fake_image_diffuse_normalized,
                                     self.coord_normalized), dim=1)
         
         self.fake_image_residue_normalized = self.net_G3(input_G3)
@@ -533,6 +493,7 @@ class FaceSep():
         # G1(A) = normal
         self.loss_Gnormal_norm,self.loss_Gnormal_perc,self.loss_Gnormal = self.criterionSimilarity(self.fake_map_normal*self.mask, self.real_map_normal, self.lam_norm, self.lam_perc)
         self.loss_Gnormal =self.loss_Gnormal *self.lam_intrinsics
+        
         
         # G2(A) = albedo
         self.loss_Galbedo = self.criterionSimilarity(self.fake_map_albedo*self.mask, self.real_map_albedo, self.lam_norm, self.lam_perc)[-1] *self.lam_intrinsics
