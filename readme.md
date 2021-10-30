@@ -1,8 +1,8 @@
-# Research on Face Specular Separation and Intrinsic Decomposition Based on Polarization Characteristics
+# Research on Face Specular Removal and Intrinsic Decomposition Based on Polarization Characteristics
 
-## title: Research on Face Specular Separation and Intrinsic Decomposition Based on Polarization Characteristics
+## title: Research on Face Specular Removal and Intrinsic Decomposition Based on Polarization Characteristics
 
-## Proposed investment：optics express journal
+## Journal：optics express journal
 
 
 
